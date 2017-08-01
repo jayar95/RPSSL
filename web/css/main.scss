@@ -1,0 +1,50 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+input[type="text"] {
+  border-radius: 5px;
+  border: 2px solid #bbbbbb;
+  outline: 0;
+  transition: border .5s ease-in-out;
+
+  &:focus {
+    border: 2px solid #e62234;
+  }
+}
+
+button {
+  border-radius: 5px;
+  border: none;
+  background: #e62234;
+  color: #fff;
+  outline: 0;
+  box-shadow: 0px 2px 1px #ccc;
+  transition: .3s ease-in;
+
+  &:hover {
+    box-shadow: 0px 3px 4px #cacaca;
+  }
+}
+
+.title {
+  font-size: 3em;
+  text-align: center;
+  font-weight: 100;
+}
+
+.index {
+  text-align: center;
+
+  form {
+    font-size: 1.5em;
+  }
+
+  input[type="text"] {
+    padding: 5px;
+  }
+
+  button {
+    padding: 7px 20px;
+  }
+}

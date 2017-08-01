@@ -1,0 +1,13 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block content %}
+    <div class="index">
+        <h3>Enter a name to begin a game</h3>
+
+        <form method="post">
+            <input name="player" type="text" placeholder="Your name..." />
+
+            <button>Play</button>
+        </form>
+    </div>
+{% endblock %}

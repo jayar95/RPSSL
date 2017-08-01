@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Game;
 
-class Hands
+final class Hands
 {
     const ROCK = 'ROCK';
     const PAPER = 'PAPER';
