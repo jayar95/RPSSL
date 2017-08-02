@@ -3,41 +3,77 @@ namespace AppBundle\Game;
 
 class Round
 {
-    private $hand;
+    /**
+     * @var Hand
+     */
+    public $hand;
 
-    private $computerHand;
+    /**
+     * @var Hand
+     */
+    public $computerHand;
 
+    /**
+     * Round constructor.
+     * @param $hand
+     */
     public function __construct($hand)
     {
-        $this->hand = strtoupper($hand);
+        $this->hand = $this->stringToHand($hand);
+
         $this->computerHand = $this->generateComputerHand();
+    }
+
+    /**
+     * @return Hand
+     */
+    public function generateComputerHand(): Hand
+    {
+        $availableHands = HandMap::getAvailableHands();
+
+        $hand = array_rand($availableHands);
+
+        $bitValue = $availableHands[$hand];
+
+        return new Hand($bitValue, $hand);
+    }
+
+    /**
+     * @param $string
+     * @return Hand
+     */
+    public function stringToHand($string): Hand
+    {
+        $hand = strtoupper($string);
+
+        $bitValue = HandMap::getAvailableHands()[$hand];
+
+        return new Hand($bitValue, $hand);
+    }
+
+    /**
+     * @return bool
+     */
+    public function playHand(): bool
+    {
+        $player = $this->hand->bit;
+
+        $computer = $this->computerHand->bit;
+
+        return (bool)($player & HandMap::$map[$computer]);
     }
 
     /**
      * @return string
      */
-    public function generateComputerHand(): string
+    public function result(): string
     {
-        return array_rand(Hands::getAvailableHands(), 1);
-    }
-
-    /**
-     * @return string|\Exception
-     */
-    public function result()
-    {
-        if ($this->hand === $this->computerHand)
-        {
+        if ($this->hand->bit === $this->computerHand->bit) {
             return GameStatusConstants::DRAW;
-        }
-        elseif (in_array($this->hand, Hands::MAP[$this->computerHand]))
-        {
+        } elseif ($this->playHand()) {
             return GameStatusConstants::LOSS;
         }
-        elseif (in_array($this->computerHand, Hands::MAP[$this->hand])) {
-            return GameStatusConstants::WIN;
-        }
 
-        return new \Exception('Invalid Hand Played');
+        return GameStatusConstants::WIN;
     }
 }
