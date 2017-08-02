@@ -1,6 +1,12 @@
 <?php
 namespace AppBundle\Game;
 
+/**
+ * Each potential hand is represented by the binary sequence seen in the
+ * constant values below.
+ * 
+ * @package AppBundle\Game
+ */
 final class HandMap
 {
     const ROCK = 1;
@@ -10,6 +16,10 @@ final class HandMap
     const LIZARD = 16;
 
     /**
+     * A bit map used to store the computations for which hands are beat by a
+     * hand. The value of each key (a hand) is a decimal result from the OR bit
+     * operation of the potentials hands the key can beat.
+     *
      * @var array
      */
     public static $map = [

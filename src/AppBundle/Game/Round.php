@@ -52,6 +52,11 @@ class Round
     }
 
     /**
+     * HandMap::$map[$computer] will return an integer. The integer bits are
+     * compared with the $player bits. If any bit match up, that means the
+     * player played a hand matched in the bit map, and true boolean is returned
+     * thus meaning the player lost.
+     *
      * @return bool
      */
     public function playHand(): bool

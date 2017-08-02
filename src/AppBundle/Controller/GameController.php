@@ -92,7 +92,15 @@ class GameController extends Controller
             ];
         }
 
-        $statGen = function($column) use ($history) {
+        /**
+         * Returns an associative array. Keys being the stat type, and the
+         * values are the stat value
+         *
+         * @param $column
+         *
+         * @return array
+         */
+        $statGen = function($column) use ($history): array {
             return array_count_values(array_column($history, $column));
         };
 

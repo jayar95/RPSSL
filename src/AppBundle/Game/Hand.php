@@ -1,6 +1,11 @@
 <?php
 namespace AppBundle\Game;
 
+/**
+ * Object model representation of a hand
+ *
+ * @package AppBundle\Game
+ */
 class Hand
 {
     /**
