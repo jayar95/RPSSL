@@ -5,25 +5,26 @@ $(function() {
 
     const endpoint = '/api/play/' + player;
 
-    $('.hands img').click(function() {
-        let hand = $(this).attr('id');
+    $('.hands .hand').click(function(e) {
+        e.preventDefault();
+        var handElement = $(this).find('img');
+        var hand = handElement.attr('id');
 
-        let request = {
+        $.ajax({
+            url: endpoint,
             method: 'POST',
-            body: JSON.stringify({
+            data: JSON.stringify({
                 hand: hand,
-            }),
-        };
-
-        fetch(endpoint, request).then((resp) => resp.json()).then((response) => {
-            let computer = response.computer.toLowerCase();
+            })
+        }).done(function(response){
+            var computer = response.computer.toLowerCase();
 
             $('.computer-hand').html('<img src="/images/' + computer + '.png" />');
-    
+
             $('.outcome').html(response.outcome);
-    
+
             $('.toggled').removeClass('toggled');
-    
+
             $(this).addClass('toggled');
         });
     });
