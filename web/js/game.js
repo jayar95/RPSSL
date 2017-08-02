@@ -18,13 +18,13 @@ $(function() {
         fetch(endpoint, request).then((resp) => resp.json()).then((response) => {
             let computer = response.computer.toLowerCase();
 
-        $('.computer-hand').html('<img src="/images/' + computer + '.png" />');
-
-        $('.outcome').html(response.outcome);
-
-        $('.toggled').removeClass('toggled');
-
-        $(this).addClass('toggled');
-    });
+            $('.computer-hand').html('<img src="/images/' + computer + '.png" />');
+    
+            $('.outcome').html(response.outcome);
+    
+            $('.toggled').removeClass('toggled');
+    
+            $(this).addClass('toggled');
+        });
     });
 });
