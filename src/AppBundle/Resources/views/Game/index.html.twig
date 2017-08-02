@@ -1,0 +1,42 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block assets %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/game.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="game-room">
+        {% include('@App/Game/nav.html.twig') %}
+
+        <div class="game">
+            <h3>Pick a hand:</h3>
+
+            <div class="hands">
+                <img src="{{ asset('images/rock.png') }}" id="rock" data-toggle="tooltip" data-placement="top" title="Rock" />
+
+                <img src="{{ asset('images/paper.png') }}" id="paper" data-toggle="tooltip" data-placement="top" title="Paper" />
+
+                <img src="{{ asset('images/scissors.png') }}" id="scissors" data-toggle="tooltip" data-placement="top" title="Scissor" />
+
+                <img src="{{ asset('images/spock.png') }}" id="spock" data-toggle="tooltip" data-placement="top" title="Spock" />
+
+                <img src="{{ asset('images/lizard.png') }}" id="lizard" data-toggle="tooltip" data-placement="top" title="Lizard" />
+            </div>
+
+            <div class="results row">
+                <div class="col-md-6">
+                    <h3>Computer plays:</h3>
+
+                    <div class="computer-hand">
+
+                    </div>
+                </div>
+                <div class="col-md-6 outcome">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

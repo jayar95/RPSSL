@@ -1,0 +1,40 @@
+{% for label, stat in stats %}
+    <h3>{{ label }}</h3>
+
+    <div class="stat-table">
+        {% for key, val in stat %}
+            <div class="stat-block">
+                <div class="stat-heading">
+                    {{ key }}
+                </div>
+
+                <div class="stat-value">
+                    {{ val }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+<h3 class="table-heading">Full Round History</h3>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Round #</th>
+        <th>Player Hand</th>
+        <th>Computer Hand</th>
+        <th>Outcome</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for game in games %}
+        <tr>
+            <th>{{ game.round }}</th>
+            <td>{{ game.hand }}</td>
+            <td>{{ game.computerHand }}</td>
+            <td>{{ game.outcome }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

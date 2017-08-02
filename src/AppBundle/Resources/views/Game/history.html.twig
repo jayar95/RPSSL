@@ -1,0 +1,13 @@
+{% extends '@App/Game/index.html.twig' %}
+
+{% block content %}
+    <div class="game-room">
+        {% include('@App/Game/nav.html.twig') %}
+
+        {% if games %}
+            {% include('AppBundle:Game:history-table.html.twig') %}
+        {% else %}
+            <h2>No games played yet.</h2>
+        {% endif %}
+    </div>
+{% endblock %}

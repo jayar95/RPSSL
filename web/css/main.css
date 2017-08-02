@@ -1,5 +1,9 @@
 body {
-  font-family: 'Raleway', sans-serif; }
+  font-family: 'Raleway', sans-serif;
+  margin: 20px; }
+
+.container {
+  max-width: 800px; }
 
 input[type="text"] {
   border-radius: 5px;
@@ -9,7 +13,7 @@ input[type="text"] {
   input[type="text"]:focus {
     border: 2px solid #e62234; }
 
-button {
+button, .main-btn {
   border-radius: 5px;
   border: none;
   background: #e62234;
@@ -17,8 +21,11 @@ button {
   outline: 0;
   box-shadow: 0px 2px 1px #ccc;
   transition: .3s ease-in; }
-  button:hover {
-    box-shadow: 0px 3px 4px #cacaca; }
+  button:hover, .main-btn:hover {
+    box-shadow: 0px 3px 4px #cacaca;
+    color: #fff;
+    text-decoration: none;
+    background: #ea3848; }
 
 .title {
   font-size: 3em;
@@ -33,3 +40,47 @@ button {
     padding: 5px; }
   .index button {
     padding: 7px 20px; }
+
+.game-room .nav-container {
+  text-align: center; }
+
+.game-room .nav {
+  margin: 50px 0;
+  font-size: 1.5em; }
+  .game-room .nav a {
+    margin: 0 15px;
+    padding: 15px; }
+
+.game-room .game h3 {
+  text-align: left; }
+
+.game-room .hands img {
+  cursor: pointer;
+  height: 128px;
+  margin: 0 10px;
+  -webkit-user-drag: none;
+  -moz-user-drag: none; }
+  .game-room .hands img.toggled {
+    background: #f11d2c; }
+
+.game-room .outcome {
+  margin-top: 25px;
+  font-size: 5em;
+  font-weight: 700;
+  text-align: center; }
+
+.stat-table {
+  font-size: 1.2em; }
+  .stat-table .stat-block {
+    display: inline-block; }
+  .stat-table .stat-heading {
+    font-weight: 700;
+    display: block;
+    padding: 10px;
+    border-bottom: 2px solid #ddd; }
+  .stat-table .stat-value {
+    text-align: center;
+    padding-top: 5px; }
+
+.table-heading {
+  margin-top: 50px; }

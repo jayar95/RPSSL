@@ -3,3 +3,35 @@ index:
   defaults:
     _controller: FrameworkBundle:Template:template
     template: AppBundle::index.html.twig
+  methods:
+    - GET
+
+game.create:
+  path: /
+  defaults:
+    _controller: AppBundle:Game:newGame
+  methods:
+    - POST
+
+game.index:
+  path: /game/{player}
+  defaults:
+    _controller: AppBundle:Game:index
+  methods:
+    - GET
+  requirements:
+    - \d+
+
+game.play.api:
+  path: /api/play/{player}
+  defaults:
+    _controller: AppBundle:Game:play
+  methods:
+    - POST
+
+game.history:
+  path: /game/{player}/history
+  defaults:
+    _controller: AppBundle:Game:history
+  methods:
+    - GET
