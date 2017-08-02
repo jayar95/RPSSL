@@ -25,7 +25,7 @@ $(function() {
 
             $('.toggled').removeClass('toggled');
 
-            $(this).addClass('toggled');
+            handElement.addClass('toggled');
         });
     });
 });
