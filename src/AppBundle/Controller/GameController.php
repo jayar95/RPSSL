@@ -8,29 +8,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends Controller
 {
     /**
-     * @Template("AppBundle:Game:index.html.twig")
      * @param Player $player
-     * @return array
+     * @return JsonResponse
      */
-    public function indexAction(Player $player): array
+    public function playerReadAction(Player $player): JsonResponse
     {
-        return [
+        return new JsonResponse([
             'player' => $player,
-        ];
+        ]);
     }
 
     /**
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function newGameAction(Request $request): Response
+    public function createAction(Request $request): JsonResponse
     {
-        $player = $request->get('player');
+        $request = json_decode($request->getContent());
+
+        $player = $request->player;
 
         $em = $this->getDoctrine()->getManager();
 
@@ -38,7 +38,7 @@ class GameController extends Controller
         $em->persist($player);
         $em->flush();
 
-        return $this->redirectToRoute('game.index', [
+        return new JsonResponse([
             'player' => $player->getId(),
         ]);
     }
@@ -49,7 +49,7 @@ class GameController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function playAction(Player $player, Request $request)
+    public function playAction(Player $player, Request $request): JsonResponse
     {
         $request = json_decode($request->getContent());
 
@@ -76,9 +76,9 @@ class GameController extends Controller
     /**
      * @Template("AppBundle:Game:history.html.twig")
      * @param Player $player
-     * @return array
+     * @return JsonResponse
      */
-    public function historyAction(Player $player): array
+    public function historyAction(Player $player): JsonResponse
     {
         $history = [];
 
@@ -110,10 +110,10 @@ class GameController extends Controller
             'Game Outcomes' => $statGen('outcome'),
         ];
 
-        return [
+        return new JsonResponse([
             'player' => $player,
             'games' => $history,
             'stats' => $stats,
-        ];
+        ]);
     }
 }

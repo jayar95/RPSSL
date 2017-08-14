@@ -3,7 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 
-class Player
+class Player implements \JsonSerializable
 {
     use EntityTrait;
 
@@ -35,10 +35,21 @@ class Player
     }
 
     /**
-     * @return Game[]|Collection|null
+     * @return Collection|Game[]||null
      */
-    public function getGames()
+    public function getGames(): Collection
     {
         return $this->games;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+        ];
     }
 }

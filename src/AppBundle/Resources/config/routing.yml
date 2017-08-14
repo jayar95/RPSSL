@@ -1,37 +1,33 @@
-index:
-  path: /
-  defaults:
-    _controller: FrameworkBundle:Template:template
-    template: AppBundle::index.html.twig
-  methods:
-    - GET
-
 game.create:
-  path: /
+  path: /game
   defaults:
-    _controller: AppBundle:Game:newGame
+    _controller: AppBundle:Game:create
   methods:
     - POST
 
-game.index:
+game.player.read:
   path: /game/{player}
   defaults:
-    _controller: AppBundle:Game:index
+    _controller: AppBundle:Game:playerRead
   methods:
     - GET
   requirements:
     - \d+
 
-game.play.api:
-  path: /api/play/{player}
+game.play:
+  path: /game/{player}/play
   defaults:
     _controller: AppBundle:Game:play
   methods:
     - POST
+  requirements:
+    - \d+
 
-game.history:
+game.player.history:
   path: /game/{player}/history
   defaults:
     _controller: AppBundle:Game:history
   methods:
     - GET
+  requirements:
+    - \d+
